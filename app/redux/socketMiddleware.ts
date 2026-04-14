@@ -51,7 +51,7 @@ export const authSocketMiddleware =
         currentUserId = uid;
         store.dispatch({
           type: "socket/connect",
-          payload: `ws://${window.location.host}/api/ws`,
+          payload: `${window.location.protocol}//${window.location.host}/api/ws`,
         });
       }
     }
