@@ -5,7 +5,7 @@ import { State } from '@/app/Types';
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { chatId: string } }
+  { params }: {params: Promise<{ chatId: string; }>; }
 ) {
   try {
     const response = NextResponse.next();

@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import admin from '@/app/config/firebaseAdmin';
 import { verifyAuthToken } from '@/app/utills/auth';
 
-export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string; }>; }) {
     try {
         const user = await verifyAuthToken(request);
         if (!user || !user.uid) {

@@ -4,7 +4,7 @@ import { verifyAuthToken } from "@/app/utills/auth";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { email: string } },
+  { params }: { params: Promise<{ email: string; }>; },
 ) {
   try {
     const user = await verifyAuthToken(request);

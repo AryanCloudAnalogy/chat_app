@@ -3,7 +3,7 @@ import admin from '@/app/config/firebaseAdmin';
 import { State } from '@/app/Types';
 import { verifyAuthToken } from '@/app/utills/auth';
 
-export async function GET(request: Request, { params }: { params: { id: string } }) {
+export async function GET(request: Request, { params }: { params: Promise<{ id: string; }>; }) {
   
   try {
     // await verifyAuthToken(request);
