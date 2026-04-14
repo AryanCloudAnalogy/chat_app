@@ -1,5 +1,5 @@
 import admin from "firebase-admin";
-import serviceAccountRaw from "@/app/config/serviceAccountKey.json";
+import serviceAccountRaw from "@/serviceAccountKey.json";
 
 const serviceAccount = {
   ...serviceAccountRaw,
