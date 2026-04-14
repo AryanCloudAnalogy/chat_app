@@ -10,6 +10,7 @@ import type { AppDispatch, RootState } from "@/app/redux/store";
 import { State, ApiUser } from "./Types";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
+import { log } from "console";
 
 export const SocketContext = React.createContext<{
   socket: WebSocket | null;
@@ -48,8 +49,9 @@ function HomePage() {
 
   useEffect(() => {
     if (!currentUserId) return;
-
+    
     const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
+    console.log(window.location.protocol);
     const ws = new WebSocket(`${protocol}//${window.location.host}/api/ws`);
 
     ws.onopen = () => {
