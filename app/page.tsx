@@ -49,10 +49,7 @@ function HomePage() {
 
   useEffect(() => {
     if (!currentUserId) return;
-    
-    const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
-    console.log(window.location.protocol);
-    const ws = new WebSocket(`${protocol}//${window.location.host}/api/ws`);
+    const ws = new WebSocket(`${window.location.protocol}//${window.location.host}/api/ws`);
 
     ws.onopen = () => {
       ws.send(JSON.stringify({ type: "REGISTER", userId: currentUserId }));
