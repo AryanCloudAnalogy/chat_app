@@ -63,7 +63,11 @@ export async function POST(request: NextRequest) {
       });
     }
     if (messageDoc.receiverId == 'gini_001') {
-      await fetch(`${request.nextUrl.origin}/api/ws`, {
+      const host = request.headers.get("host") || "localhost:3000";
+      const protocol = host.includes("localhost") || host.includes("127.0.0.1") ? "http" : "https";
+      const baseUrl = `${protocol}://${host}`;
+
+      await fetch(`${baseUrl}/api/ws`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -94,7 +98,7 @@ export async function POST(request: NextRequest) {
         [`unRead.${newMesageDoc.receiverId}`]: admin.firestore.FieldValue.increment(1),
       });
 
-      await fetch(`${request.nextUrl.origin}/api/ws`, {
+      await fetch(`${baseUrl}/api/ws`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -105,7 +109,7 @@ export async function POST(request: NextRequest) {
         }),
       }).catch(err => console.error("Internal WS broadcast failed:", err));
 
-      await fetch(`${request.nextUrl.origin}/api/ws`, {
+      await fetch(`${baseUrl}/api/ws`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
